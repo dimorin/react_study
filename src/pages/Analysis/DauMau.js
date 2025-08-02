@@ -11,7 +11,7 @@ const DauMau = () => {
       </div>
       
       <div className="coming-soon">
-        <h2>📊 개발 중</h2>
+        <h2>🚧 개발 중</h2>
         <p>DAU/MAU 통계 기능이 곧 추가될 예정입니다.</p>
       </div>
     </div>

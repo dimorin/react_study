@@ -11,7 +11,7 @@ const SalesAnalysis = () => {
       </div>
       
       <div className="coming-soon">
-        <h2>💰 개발 중</h2>
+        <h2>🚧 개발 중</h2>
         <p>매출 분석 기능이 곧 추가될 예정입니다.</p>
       </div>
     </div>

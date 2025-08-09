@@ -3,69 +3,48 @@ import { useParams, useNavigate } from 'react-router-dom';
 import UserModal from '../../components/Modals/UserModal';
 import DeleteConfirmModal from '../../components/Modals/DeleteConfirmModal';
 import './UserDetail.css';
+import { fetchUserById } from '../../services/usersApi';
 
 const UserDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState('');
   const [showEditModal, setShowEditModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
 
-  // 실제 앱에서는 API에서 데이터를 가져올 것입니다
-  const mockUsers = [
-    {
-      id: 1,
-      name: '김철수',
-      email: 'kim@example.com',
-      phone: '010-1234-5678',
-      gender: '남성',
-      birthDate: '1990-05-15',
-      joinDate: '2024-01-15',
-      joinSource: '웹사이트',
-      lastLogin: '2024-12-20 14:30',
-      loginCount: 45,
-      status: '활성',
-      zipCode: '12345',
-      address: '서울시 강남구 테헤란로 123',
-      detailAddress: '1층 101호'
-    },
-    {
-      id: 2,
-      name: '이영희',
-      email: 'lee@example.com',
-      phone: '010-2345-6789',
-      gender: '여성',
-      birthDate: '1985-08-22',
-      joinDate: '2024-02-20',
-      joinSource: '모바일 앱',
-      lastLogin: '2024-12-19 09:15',
-      loginCount: 32,
-      status: '활성',
-      zipCode: '54321',
-      address: '부산시 해운대구 해운대로 456',
-      detailAddress: '3층 301호'
-    },
-    {
-      id: 3,
-      name: '박민수',
-      email: 'park@example.com',
-      phone: '010-3456-7890',
-      gender: '남성',
-      birthDate: '1995-12-03',
-      joinDate: '2024-03-10',
-      joinSource: '추천',
-      lastLogin: '2024-12-18 16:45',
-      loginCount: 18,
-      status: '비활성',
-      zipCode: '67890',
-      address: '대구시 중구 중앙대로 789',
-      detailAddress: '2층 201호'
-    }
-  ];
-
   useEffect(() => {
-    const foundUser = mockUsers.find(u => u.id === parseInt(id));
-    setUser(foundUser);
+    const load = async () => {
+      try {
+        setIsLoading(true);
+        setError('');
+        const data = await fetchUserById(id);
+        // 상세 화면에서 사용하는 필드에 맞춰 매핑
+        const mapped = {
+          id: data.id,
+          name: data.name,
+          email: data.email,
+          phone: data.phone || '-',
+          gender: '-',
+          birthDate: '-',
+          joinDate: '-',
+          joinSource: data.website || '-',
+          lastLogin: '-',
+          loginCount: '-',
+          status: '활성',
+          zipCode: data.address?.zipcode || '-',
+          address: data.address ? `${data.address.street} ${data.address.suite}, ${data.address.city}` : '-',
+          detailAddress: '-'
+        };
+        setUser(mapped);
+      } catch (err) {
+        setError(err.message || '알 수 없는 오류가 발생했습니다.');
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    load();
   }, [id]);
 
   const handleEditUser = (userData) => {
@@ -81,6 +60,22 @@ const UserDetail = () => {
   const handleBackToList = () => {
     navigate('/operation/users/list');
   };
+
+  if (isLoading) {
+    return (
+      <div className="user-detail">
+        <div className="loading">불러오는 중...</div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="user-detail">
+        <div className="loading" style={{ color: '#c00' }}>{error}</div>
+      </div>
+    );
+  }
 
   if (!user) {
     return (

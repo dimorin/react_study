@@ -1,39 +1,14 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import UserModal from '../../components/Modals/UserModal';
 import DeleteConfirmModal from '../../components/Modals/DeleteConfirmModal';
 import './UserList.css';
+import { fetchUsers } from '../../services/usersApi';
 
 const UserList = () => {
-  const [users, setUsers] = useState([
-    {
-      id: 1,
-      name: '김철수',
-      email: 'kim@example.com',
-      phone: '010-1234-5678',
-      joinDate: '2024-01-15',
-      lastLogin: '2024-12-20 14:30',
-      status: '활성'
-    },
-    {
-      id: 2,
-      name: '이영희',
-      email: 'lee@example.com',
-      phone: '010-2345-6789',
-      joinDate: '2024-02-20',
-      lastLogin: '2024-12-19 09:15',
-      status: '활성'
-    },
-    {
-      id: 3,
-      name: '박민수',
-      email: 'park@example.com',
-      phone: '010-3456-7890',
-      joinDate: '2024-03-10',
-      lastLogin: '2024-12-18 16:45',
-      status: '비활성'
-    }
-  ]);
+  const [users, setUsers] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState('');
 
   const [searchTerm, setSearchTerm] = useState('');
   const [statusFilter, setStatusFilter] = useState('');
@@ -46,6 +21,33 @@ const UserList = () => {
   const [sortDirection, setSortDirection] = useState('asc');
 
   const itemsPerPage = 10;
+
+  // API에서 사용자 목록을 가져옴
+  useEffect(() => {
+    const load = async () => {
+      try {
+        setIsLoading(true);
+        setError('');
+        const data = await fetchUsers();
+        // 화면에서 사용 중인 필드에 맞춰 매핑
+        const mapped = data.map((u) => ({
+          id: u.id,
+          name: u.name,
+          email: u.email,
+          phone: u.phone || '-',
+          joinDate: '-',
+          lastLogin: '-',
+          status: '활성'
+        }));
+        setUsers(mapped);
+      } catch (err) {
+        setError(err.message || '알 수 없는 오류가 발생했습니다.');
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    load();
+  }, []);
 
   const handleSearch = (e) => {
     setSearchTerm(e.target.value);
@@ -121,6 +123,13 @@ const UserList = () => {
           <span>운영 관리</span> &gt; <span>사용자 관리</span> &gt; <span className="current">회원 목록</span>
         </nav>
       </div>
+
+      {isLoading && (
+        <div className="loading">불러오는 중...</div>
+      )}
+      {error && (
+        <div className="loading" style={{ color: '#c00' }}>{error}</div>
+      )}
 
       <div className="list-controls">
         <div className="search-filters">

@@ -185,3 +185,11 @@
     min-width: 800px;
   }
 } 
+
+/* 공통 로딩 메시지 스타일 */
+.loading {
+  text-align: center;
+  padding: 12px 0 20px;
+  font-size: 14px;
+  color: #666;
+}

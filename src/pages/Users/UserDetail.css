@@ -19,8 +19,7 @@
 }
 
 .breadcrumb .current {
-  color: #007bff;
-  font-weight: 500;
+  color: #3bafda;
 }
 
 .detail-actions {
@@ -30,8 +29,7 @@
   margin-bottom: 30px;
   padding: 20px;
   background: white;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;  
 }
 
 .action-group {
@@ -48,8 +46,7 @@
 .detail-section {
   background: white;
   border-radius: 8px;
-  padding: 24px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 24px;  
 }
 
 .detail-section h2 {
@@ -116,8 +113,7 @@
 .info-card {
   background: #f8f9fa;
   border-radius: 8px;
-  padding: 20px;
-  border-left: 4px solid #007bff;
+  padding: 20px;  
 }
 
 .info-card h3 {

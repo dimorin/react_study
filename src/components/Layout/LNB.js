@@ -9,34 +9,39 @@ const LNB = () => {
   const navigationStructure = {
     '/operation': {
       title: '운영 관리',
+      icon: 'settings',
       sections: [
         {
           title: '사용자 관리',
           path: '/operation/users',
+          icon: 'group',
           items: [
-            { title: '회원 목록', path: '/operation/users/list' },
-            { title: '로그 기록', path: '/operation/users/logs' }
+            { title: '회원 목록', path: '/operation/users/list', icon: 'list' },
+            { title: '로그 기록', path: '/operation/users/logs', icon: 'analytics' }
           ]
         },
         {
           title: '콘텐츠 관리',
           path: '/operation/contents',
+          icon: 'edit_note',
           items: [
-            { title: '게시글 관리', path: '/operation/contents/posts' },
-            { title: '댓글 관리', path: '/operation/contents/comments' }
+            { title: '게시글 관리', path: '/operation/contents/posts', icon: 'article' },
+            { title: '댓글 관리', path: '/operation/contents/comments', icon: 'chat' }
           ]
         }
       ]
     },
     '/analysis': {
       title: '통계 및 분석',
+      icon: 'trending_up',
       sections: [
         {
           title: '서비스 통계',
           path: '/analysis/service',
+          icon: 'analytics',
           items: [
-            { title: '일간/월간 활성 사용자', path: '/analysis/service/dau_mau' },
-            { title: '매출 현황', path: '/analysis/service/sales' }
+            { title: '일간/월간 활성 사용자', path: '/analysis/service/dau_mau', icon: 'person' },
+            { title: '매출 현황', path: '/analysis/service/sales', icon: 'payments' }
           ]
         }
       ]
@@ -80,9 +85,12 @@ const LNB = () => {
   }
 
   return (
-    <aside className="lnb">
+    <div className="lnb">
       <div className="lnb-header">
-        <h3>{currentNav.title}</h3>
+        <h3>
+          <span className="material-symbols-outlined" style={{ marginRight: '8px' }}>{currentNav.icon}</span>
+          {currentNav.title}
+        </h3>
       </div>
       
       <nav className="lnb-nav">
@@ -92,8 +100,11 @@ const LNB = () => {
               className={`lnb-section-title ${openSections[section.path] ? 'open' : ''}`}
               onClick={() => toggleSection(section.path)}
             >
-              <span>{section.title}</span>
-              <span className="arrow">{openSections[section.path] ? '▼' : '▶'}</span>
+              <span>
+                <span className="material-symbols-outlined" style={{ marginRight: '8px' }}>{section.icon}</span>
+                {section.title}
+              </span>
+              <span className="arrow material-symbols-outlined">{openSections[section.path] ? 'expand_more' : 'chevron_right'}</span>
             </div>
             
             {openSections[section.path] && (
@@ -104,6 +115,7 @@ const LNB = () => {
                       to={item.path}
                       className={`lnb-item ${location.pathname === item.path ? 'active' : ''}`}
                     >
+                      <span className="material-symbols-outlined" style={{ marginRight: '8px' }}>{item.icon}</span>
                       {item.title}
                     </Link>
                   </li>
@@ -113,7 +125,7 @@ const LNB = () => {
           </div>
         ))}
       </nav>
-    </aside>
+    </div>
   );
 };
 

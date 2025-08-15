@@ -62,8 +62,7 @@
 .table-container {
   background: white;
   border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;  
 }
 
 .table {
@@ -72,13 +71,11 @@
   margin: 0;
 }
 
-.table th {
-  background-color: #f8f9fa;
+.table th {  
   padding: 16px 12px;
   text-align: left;
-  font-weight: 600;
-  color: #333;
-  border-bottom: 2px solid #dee2e6;
+  font-weight: 400;
+  border-bottom: 1px solid #dee2e6;
 }
 
 .table th.sortable {
@@ -107,9 +104,8 @@
 }
 
 .user-link {
-  color: #007bff;
+  color: #3bafda;
   text-decoration: none;
-  font-weight: 500;
 }
 
 .user-link:hover {

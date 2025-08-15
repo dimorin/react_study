@@ -1,13 +1,79 @@
-.footer {
-  height: 40px;
-  background-color: #ffffff;
-  border-top: 1px solid #dee2e6;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+/* 푸터 컨테이너 - content-page의 footer 스타일 */
+.footer {  
+  height: 100px;
+  padding: 25px 30px 0;
+  text-align: center;
+  color: #6c757d;
+  font-size: 14px;
+  line-height: 1.5;
+  position: relative;
+  margin-left: 260px; /* 사이드바 너비만큼 여백 */
 }
 
+/* 대시보드일 때 푸터 여백 조정 */
+.footer.full-width {
+  margin-left: 0;
+}
+
+/* 푸터 콘텐츠 */
 .footer-content {
-  font-size: 12px;
-  color: #666;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+/* 푸터 텍스트 */
+.footer-text {
+  margin: 0;
+  color: #6c757d;
+  font-size: 14px;
+}
+
+/* 푸터 링크 */
+.footer-link {
+  color: #3bafda;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer-link:hover {
+  color: #2a9bb8;
+  text-decoration: underline;
+}
+
+/* 푸터 추가 정보 */
+.footer-info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  font-size: 13px;
+  color: #adb5bd;
+}
+
+.footer-info-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.footer-info-icon {
+  font-size: 16px;
+  opacity: 0.7;
+  font-variation-settings: 'FILL' 0;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+  .footer {
+    padding: 20px 20px;
+    margin-left: 0;
+  }
+  
+  .footer-info {
+    flex-direction: column;
+    gap: 10px;
+  }
 } 

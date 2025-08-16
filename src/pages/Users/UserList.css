@@ -2,27 +2,6 @@
   padding: 0;
 }
 
-.page-header {
-  margin-bottom: 24px;
-}
-
-.page-header h1 {
-  font-size: 24px;
-  font-weight: 600;
-  color: #333;
-  margin-bottom: 8px;
-}
-
-.breadcrumb {
-  font-size: 14px;
-  color: #666;
-}
-
-.breadcrumb .current {
-  color: #007bff;
-  font-weight: 500;
-}
-
 .list-controls {
   display: flex;
   justify-content: space-between;
@@ -76,6 +55,7 @@
   text-align: left;
   font-weight: 400;
   border-bottom: 1px solid #dee2e6;
+  font-size:14px;
 }
 
 .table th.sortable {
@@ -91,7 +71,7 @@
 .table td {
   padding: 12px;
   border-bottom: 1px solid #dee2e6;
-  vertical-align: middle;
+  font-size:14px;
 }
 
 .table tbody tr {

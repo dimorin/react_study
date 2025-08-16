@@ -29,15 +29,42 @@
 
 /* 콘텐츠 영역 - content-page의 content 스타일 */
 .content-area {
-  flex: 1;
-  padding: 30px;
-  background-color: #f8f9fa;
+  flex: 1;    
   margin-left: 260px; /* 사이드바 너비만큼 여백 */  
 }
 
 /* 대시보드일 때 전체 너비 사용 */
 .content-area.full-width {
   margin-left: 0;
+}
+
+/* 페이지 헤더 공통 스타일 */
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;  
+  padding:15px 30px;
+  box-shadow: 0 1px 1px rgba(50, 58, 70, .1);
+}
+
+.page-header h1 {
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--heading-color);  
+}
+
+.page-content{
+  padding:30px;
+}
+
+.breadcrumb {
+  font-size: 14px;
+  color: var(--breadcrumb-item-color);
+}
+
+.breadcrumb .current {
+  color: var(--breadcrumb-item-active-color);  
 }
 
 /* 반응형 디자인 */

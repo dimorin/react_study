@@ -9,14 +9,14 @@
 
 .dashboard-header h1 {
   font-size: 28px;
-  font-weight: 700;
-  color: #333;
+  font-weight: 500;
+  color: var(--heading-color);
   margin-bottom: 8px;
 }
 
 .dashboard-header p {
   font-size: 16px;
-  color: #666;
+  color: var(--body-color);
   margin: 0;
 }
 
@@ -53,21 +53,21 @@
 
 .card-content h3 {
   font-size: 14px;
-  color: #666;
+  color: var(--body-color);
   margin: 0 0 8px 0;
   font-weight: 500;
 }
 
 .card-value {
   font-size: 24px;
-  font-weight: 700;
-  color: #333;
+  font-weight: 500;
+  color: var(--heading-color);
   margin-bottom: 4px;
 }
 
 .card-trend {
   font-size: 12px;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .card-trend.positive {
@@ -92,14 +92,13 @@
 
 .section-title {
   margin-bottom: 20px;
-  padding-bottom: 10px;
-  border-bottom: 1px solid #dee2e6;
+  padding-bottom: 10px;  
 }
 
 .section-title h2 {
   font-size: 18px;
-  font-weight: 600;
-  color: #333;
+  font-weight: 500;
+  color: var(--heading-color);
   margin: 0;
 }
 
@@ -121,13 +120,13 @@
 
 .activity-user {
   font-weight: 500;
-  color: #333;
+  color: var(--heading-color);
   min-width: 80px;
 }
 
 .activity-action {
   flex: 1;
-  color: #666;
+  color: var(--body-color);
   margin: 0 16px;
 }
 
@@ -142,14 +141,18 @@
   flex-direction: column;
 }
 
+.chart-content{
+  height:100%;
+}
 .chart-content h3 {
   font-size: 16px;
-  color: #333;
+  color: var(--heading-color);
   margin-bottom: 20px;
   text-align: center;
 }
 
 .chart-mock {
+  height:100%;
   flex: 1;
   display: flex;
   align-items: flex-end;
@@ -160,7 +163,7 @@
 
 .chart-bar {
   flex: 1;
-  background: linear-gradient(180deg, #007bff 0%, #0056b3 100%);
+  background: linear-gradient(180deg, var(--color-primary) 0%, #0056b3 100%);
   border-radius: 4px 4px 0 0;
   min-height: 20px;
   transition: all 0.3s ease;
@@ -184,7 +187,7 @@
   background: #f8f9fa;
   border-radius: 8px;
   text-decoration: none;
-  color: #333;
+  color: var(--heading-color);
   transition: all 0.2s;
 }
 

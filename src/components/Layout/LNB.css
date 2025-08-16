@@ -2,14 +2,14 @@
 .lnb {
   width: 100%;
   height: 100%;
-  background-color: #ffffff;
+  background-color: var(--menu-bg);
   overflow-y: auto;  
 }
 
 /* 사이드바 헤더 */
 .lnb-header {
   padding: 25px 20px;
-  background-color: #f8f9fa;
+  background-color: var(--menu-bg);
   border-bottom: 1px solid #e9ecef;
   text-align: center;
 }
@@ -17,7 +17,7 @@
 .lnb-header h3 {
   font-size: 18px;
   font-weight: 500;
-  color: #495057;
+  color: var(--menu-item-color);
   margin: 0;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -28,7 +28,7 @@
 .lnb-header .material-symbols-outlined {
   font-size: 20px;
   font-variation-settings: 'FILL' 0;
-  color: #3bafda;
+  color: var(--color-primary);
 }
 
 /* 네비게이션 메뉴 */
@@ -46,8 +46,8 @@
   justify-content: space-between;
   padding: 15px 20px;
   cursor: pointer;
-  font-weight: 600;
-  color: #6c757d;
+  font-weight: 500;
+  color:var(--menu-item-color);
   transition: all 0.2s;
   font-size: 13px;
   text-transform: uppercase;
@@ -59,16 +59,13 @@
   font-variation-settings: 'FILL' 0;
 }
 
-.lnb-section-title:hover {
-  background-color: #f8f9fa;
-  color: #3bafda;
-  border-left-color: #3bafda;
+.lnb-section-title:hover {  
+  color: var(--menu-item-active);
 }
 
 .lnb-section-title.open {
-  background-color: #e9ecef;
-  color: #3bafda;
-  border-left-color: #3bafda;
+  background-color: var(--menu-item-active-bg);
+  color: var(--menu-item-active);  
 }
 
 .arrow {
@@ -80,7 +77,7 @@
 
 .lnb-section-title.open .arrow {
   transform: rotate(90deg);
-  color: #3bafda;
+  color: var(--color-primary);
 }
 
 /* 메뉴 아이템 리스트 */
@@ -113,20 +110,16 @@
   margin-right: 8px;
 }
 
-.lnb-item:hover {
-  background-color: #e9ecef;
-  color: #495057;
-  border-left-color: #3bafda;
+.lnb-item:hover {  
+  color: var(--menu-item-hover);  
 }
 
-.lnb-item.active {
-  background-color: #3bafda;
-  color: #ffffff;
-  border-left-color: #2a9bb8;
+.lnb-item.active {  
+  color: var(--menu-item-active);  
 }
 
 .lnb-item.active:hover {
-  background-color: #2a9bb8;
+  
 }
 
 .lnb-item:hover::before,
@@ -153,8 +146,8 @@
 
 .lnb-submenu .lnb-item.active {
   background-color: #e9ecef;
-  color: #3bafda;
-  border-left-color: #3bafda;
+  color: var(--color-primary);
+  border-left-color: var(--color-primary);
 }
 
 /* 스크롤바 스타일링 */

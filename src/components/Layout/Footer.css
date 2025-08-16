@@ -32,13 +32,13 @@
 
 /* 푸터 링크 */
 .footer-link {
-  color: #3bafda;
+  color: var(--color-primary);
   text-decoration: none;
   transition: color 0.2s;
 }
 
 .footer-link:hover {
-  color: #2a9bb8;
+  color: var(--color-primary);
   text-decoration: underline;
 }
 

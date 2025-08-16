@@ -24,7 +24,7 @@
 .logo-link {
   font-size: 18px;
   font-weight: 500;
-  color: #3bafda;
+  color: var(--color-primary);
   text-decoration: none;
   display: flex;
   align-items: center;
@@ -32,7 +32,7 @@
 }
 
 .logo-link:hover {
-  color: #2a9bb8;
+  color: var(--color-primary);
 }
 
 .logo-icon {
@@ -57,7 +57,7 @@
 .nav-title {
   font-size: 15px;
   font-weight: 500;
-  color: #6c757d;
+  color: var(--color-primary);
   padding: 10px 15px;
   border-radius: 4px;
   transition: all 0.2s;
@@ -77,7 +77,7 @@
 }
 .nav-item:hover .nav-title,
 .nav-item.active .nav-title {  
-  color: #3bafda;
+  color: var(--color-primary);
 }
 
 /* 드롭다운 메뉴 */
@@ -103,7 +103,7 @@
 
 .dropdown-item:hover {
   background-color: #f8f9fa;
-  color: #3bafda;
+  color: var(--color-primary);
 }
 
 .dropdown-item:last-child {
@@ -138,7 +138,7 @@
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  background-color: #3bafda;
+  background-color: var(--color-primary);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -208,7 +208,7 @@
 
 .user-dropdown-item:hover {
   background-color: #f8f9fa;
-  color: #3bafda;
+  color: var(--color-primary);
 }
 
 .user-dropdown-item:last-child {

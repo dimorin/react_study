@@ -2,26 +2,6 @@
   padding: 0;
 }
 
-.page-header {
-  margin-bottom: 24px;
-}
-
-.page-header h1 {
-  font-size: 24px;
-  font-weight: 600;
-  color: #333;
-  margin-bottom: 8px;
-}
-
-.breadcrumb {
-  font-size: 14px;
-  color: #666;
-}
-
-.breadcrumb .current {
-  color: #3bafda;
-}
-
 .log-controls {
   margin-bottom: 20px;
 }

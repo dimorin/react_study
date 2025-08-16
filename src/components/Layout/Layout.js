@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import Header from './Header';
 import LNB from './LNB';
@@ -7,28 +7,27 @@ import './Layout.css';
 
 const Layout = ({ children }) => {
   const location = useLocation();
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const isDashboard = location.pathname === '/' || location.pathname === '/dashboard';
 
+  const toggleSidebar = () => {
+    setSidebarCollapsed(!sidebarCollapsed);
+  };
+
   return (
-    <div className="layout">
-      {/* Header 영역 */}      
+    <div className={`layout ${sidebarCollapsed ? 'collapsed' : ''}`}>
       <Header />
-      
       <div className="main-container">
-        {/* Sidebar 영역 */}
-        {!isDashboard && (
-          <div className="sidebar">
-            <LNB />
-          </div>
-        )}
-        
-        {/* Main 영역 - 대시보드 페이지에서는 풀 너비로 표시 */}
-        <main className={`content-area ${isDashboard ? 'full-width' : ''}`}>
+        <div className="sidebar">
+          <LNB 
+            collapsed={sidebarCollapsed} 
+            onToggleCollapse={toggleSidebar} 
+          />
+        </div>
+        <main className="content-area">
           {children}
         </main>
       </div>
-      
-      {/* Footer 영역 - 대시보드 페이지에서는 풀 너비로 표시 */}      
       <Footer />
     </div>
   );

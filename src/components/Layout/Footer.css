@@ -10,6 +10,10 @@
   margin-left: 260px; /* 사이드바 너비만큼 여백 */
 }
 
+.collapsed .footer {
+  margin-left: 70px;
+}
+
 /* 대시보드일 때 푸터 여백 조정 */
 .footer.full-width {
   margin-left: 0;

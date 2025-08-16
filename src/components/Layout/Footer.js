@@ -7,7 +7,7 @@ const Footer = () => {
   const isDashboard = location.pathname === '/' || location.pathname === '/dashboard';
 
   return (
-    <footer className={`footer ${isDashboard ? 'full-width' : ''}`}>
+    <footer className="footer">
       <div className="footer-content">
         <p className="footer-text">
           © 2025 <span className="footer-link">Comprehensive Resource Management</span>. All rights reserved.

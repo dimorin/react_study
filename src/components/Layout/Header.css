@@ -2,7 +2,7 @@
 .header {
   position: fixed;
   top: 0;
-  left: 0;
+  left: 260px;
   right: 0;
   height: 70px;
   background-color: #ffffff;  
@@ -10,34 +10,12 @@
   border-bottom: 1px solid #e9ecef;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
   padding: 0 30px;
 }
 
-/* 로고 영역 */
-.header-logo {
-  width: 200px;
-  display: flex;
-  align-items: center;
-}
-
-.logo-link {
-  font-size: 18px;
-  font-weight: 500;
-  color: var(--color-primary);
-  text-decoration: none;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.logo-link:hover {
-  color: var(--color-primary);
-}
-
-.logo-icon {
-  font-size: 24px;
-  font-variation-settings: 'FILL' 1;
+.collapsed .header {
+  left: 70px;
 }
 
 /* 네비게이션 메뉴 */
@@ -143,7 +121,7 @@
   align-items: center;
   justify-content: center;
   color: #ffffff;
-  font-weight: 600;
+  font-weight: 500;
   font-size: 14px;
 }
 
@@ -155,7 +133,7 @@
 
 .user-name {
   font-size: 14px;
-  font-weight: 600;
+  font-weight: 500;
   color: #495057;
   line-height: 1.2;
 }

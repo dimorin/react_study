@@ -79,89 +79,90 @@ const UserLogs = () => {
   return (
     <div className="user-logs">
       <div className="page-header">
-        <h1>로그 기록</h1>
+        <h1>로그</h1>
         <nav className="breadcrumb">
-          <span>운영 관리</span> &gt; <span>사용자 관리</span> &gt; <span className="current">로그 기록</span>
+          <span>운영 관리</span> <span class="material-symbols-outlined">chevron_right</span> <span>사용자</span> <span class="material-symbols-outlined">chevron_right</span> <span className="current">로그</span>
         </nav>
       </div>
       <div className="page-content">
-        <div className="log-controls">
-          <div className="search-filters">
-            <input
-              type="text"
-              placeholder="사용자명 또는 활동으로 검색"
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="search-input"
-            />
-            <select
-              value={actionFilter}
-              onChange={(e) => setActionFilter(e.target.value)}
-              className="filter-select"
-            >
-              <option value="">모든 활동</option>
-              <option value="로그인">로그인</option>
-              <option value="로그아웃">로그아웃</option>
-              <option value="회원가입">회원가입</option>
-              <option value="게시글 작성">게시글 작성</option>
-              <option value="댓글 작성">댓글 작성</option>
-            </select>
-            <button 
-              className="btn btn-secondary"
-              onClick={() => {
-                setSearchTerm('');
-                setActionFilter('');
-              }}
-            >
-              초기화
-            </button>
+        <div className="page-content-wrapper">
+          <div className="log-controls">
+            <div className="search-filters">
+              <input
+                type="text"
+                placeholder="사용자명 또는 활동으로 검색"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="search-input"
+              />
+              <select
+                value={actionFilter}
+                onChange={(e) => setActionFilter(e.target.value)}
+                className="filter-select"
+              >
+                <option value="">모든 활동</option>
+                <option value="로그인">로그인</option>
+                <option value="로그아웃">로그아웃</option>
+                <option value="회원가입">회원가입</option>
+                <option value="게시글 작성">게시글 작성</option>
+                <option value="댓글 작성">댓글 작성</option>
+              </select>
+              <button 
+                className="btn btn-secondary"
+                onClick={() => {
+                  setSearchTerm('');
+                  setActionFilter('');
+                }}
+              >
+                초기화
+              </button>
+            </div>
           </div>
-        </div>
 
-        <div className="table-container">
-          <table className="table">
-            <thead>
-              <tr>
-                <th>로그 ID</th>
-                <th>사용자</th>
-                <th>활동</th>
-                <th>시간</th>
-                <th>IP 주소</th>
-                <th>사용자 에이전트</th>
-              </tr>
-            </thead>
-            <tbody>
-              {filteredLogs.map((log) => (
-                <tr key={log.id}>
-                  <td>{log.id}</td>
-                  <td>
-                    <div className="user-info">
-                      <span className="user-name">{log.userName}</span>
-                      <span className="user-id">(ID: {log.userId})</span>
-                    </div>
-                  </td>
-                  <td>
-                    <span className={`action-badge ${getActionBadgeClass(log.action)}`}>
-                      {log.action}
-                    </span>
-                  </td>
-                  <td>{log.timestamp}</td>
-                  <td>{log.ip}</td>
-                  <td className="user-agent">{log.userAgent}</td>
+          <div className="table-container">
+            <table className="table">
+              <thead>
+                <tr>
+                  <th>로그 ID</th>
+                  <th>사용자</th>
+                  <th>활동</th>
+                  <th>시간</th>
+                  <th>IP 주소</th>
+                  <th>사용자 에이전트</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-
-        <div className="log-summary">
-          <div className="summary-item">
-            <span className="summary-label">총 로그 수:</span>
-            <span className="summary-value">{filteredLogs.length}건</span>
+              </thead>
+              <tbody>
+                {filteredLogs.map((log) => (
+                  <tr key={log.id}>
+                    <td>{log.id}</td>
+                    <td>
+                      <div className="">
+                        <span className="user-name">{log.userName}</span>
+                        <span className="user-id">(ID: {log.userId})</span>
+                      </div>
+                    </td>
+                    <td>
+                      <span className={`action-badge ${getActionBadgeClass(log.action)}`}>
+                        {log.action}
+                      </span>
+                    </td>
+                    <td>{log.timestamp}</td>
+                    <td>{log.ip}</td>
+                    <td className="user-agent">{log.userAgent}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
-        </div>
-      </div>
-      
+
+          <div className="log-summary">
+            <div className="summary-item">
+              <span className="summary-label">총 로그 수:</span>
+              <span className="summary-value">{filteredLogs.length}건</span>
+            </div>
+          </div>
+        </div>        
+      </div>      
     </div>
   );
 };

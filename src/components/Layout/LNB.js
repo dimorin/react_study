@@ -2,130 +2,223 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import './LNB.css';
 
-const LNB = () => {
+const LNB = ({ collapsed, onToggleCollapse }) => {
   const location = useLocation();
   const [openSections, setOpenSections] = useState({});
 
-  const navigationStructure = {
-    '/operation': {
+  const navigationStructure = [
+    {
+      id: 'dashboard',
+      title: '대시보드',
+      icon: 'dashboard',
+      path: '/dashboard',
+      badge: null
+    },
+    {
+      id: 'operation',
       title: '운영 관리',
       icon: 'settings',
-      sections: [
+      path: '/operation',
+      badge: null,
+      children: [
         {
-          title: '사용자 관리',
-          path: '/operation/users',
+          id: 'users',
+          title: '사용자',
           icon: 'group',
-          items: [
-            { title: '회원 목록', path: '/operation/users/list', icon: 'list' },
-            { title: '로그 기록', path: '/operation/users/logs', icon: 'analytics' }
+          path: '/operation/users',
+          children: [
+            { title: '회원', path: '/operation/users/list', icon: 'list' },
+            { title: '로그', path: '/operation/users/logs', icon: 'analytics' }
           ]
         },
         {
-          title: '콘텐츠 관리',
-          path: '/operation/contents',
+          id: 'contents',
+          title: '콘텐츠',
           icon: 'edit_note',
-          items: [
-            { title: '게시글 관리', path: '/operation/contents/posts', icon: 'article' },
-            { title: '댓글 관리', path: '/operation/contents/comments', icon: 'chat' }
+          path: '/operation/contents',
+          children: [
+            { title: '게시글', path: '/operation/contents/posts', icon: 'article' },
+            { title: '댓글', path: '/operation/contents/comments', icon: 'chat' }
           ]
         }
       ]
     },
-    '/analysis': {
+    {
+      id: 'analysis',
       title: '통계 및 분석',
       icon: 'trending_up',
-      sections: [
+      path: '/analysis',
+      badge: 'New',
+      children: [
         {
+          id: 'service',
           title: '서비스 통계',
-          path: '/analysis/service',
           icon: 'analytics',
-          items: [
+          path: '/analysis/service',
+          children: [
             { title: '일간/월간 활성 사용자', path: '/analysis/service/dau_mau', icon: 'person' },
             { title: '매출 현황', path: '/analysis/service/sales', icon: 'payments' }
           ]
         }
       ]
     }
-  };
+  ];
 
-  const getCurrentNav = () => {
-    for (const [key, nav] of Object.entries(navigationStructure)) {
-      if (location.pathname.startsWith(key)) {
-        return nav;
-      }
-    }
-    return null;
-  };
-
-  const toggleSection = (sectionPath) => {
+  const toggleSection = (sectionId) => {
     setOpenSections(prev => ({
       ...prev,
-      [sectionPath]: !prev[sectionPath]
+      [sectionId]: !prev[sectionId]
     }));
+  };
+
+  const toggleSidebar = () => {
+    if (onToggleCollapse) {
+      onToggleCollapse();
+    }
   };
 
   useEffect(() => {
     // 현재 경로에 해당하는 섹션을 자동으로 열기
-    const currentNav = getCurrentNav();
-    if (currentNav) {
-      const newOpenSections = {};
-      currentNav.sections.forEach(section => {
-        if (location.pathname.startsWith(section.path)) {
-          newOpenSections[section.path] = true;
-        }
-      });
-      setOpenSections(newOpenSections);
-    }
+    const currentPath = location.pathname;
+    const newOpenSections = {};
+    
+    navigationStructure.forEach(nav => {
+      if (nav.children) {
+        nav.children.forEach(section => {
+          if (currentPath.startsWith(section.path)) {
+            newOpenSections[section.id] = true;
+          }
+        });
+      }
+    });
+    
+    setOpenSections(newOpenSections);
   }, [location.pathname]);
 
-  const currentNav = getCurrentNav();
+  const isActive = (path) => {
+    return location.pathname === path || location.pathname.startsWith(path);
+  };
 
-  if (!currentNav) {
-    return null;
-  }
+  const renderMenuItem = (item) => {
+    if (item.children) {
+      return (
+        <li key={item.id} className={`has-sub ${openSections[item.id] ? 'open' : ''}`}>
+          <a 
+            href="#!" 
+            className="side-menu-link"
+            onClick={(e) => {
+              e.preventDefault();
+              toggleSection(item.id);
+            }}
+          >
+            <span className="side-menu-icon">
+              <span className="material-symbols-outlined">{item.icon}</span>
+            </span>
+            <span className="side-menu-text">{item.title}</span>
+            {item.badge && (
+              <span className="badge bg-soft-primary text-primary ms-auto">{item.badge}</span>
+            )}
+            <span className="menu-arrow">
+              <span className="material-symbols-outlined">
+                {openSections[item.id] ? 'expand_more' : 'chevron_right'}
+              </span>
+            </span>
+          </a>
+          <ul className="side-menu-sub">
+            {item.children.map(subItem => (
+              <li key={subItem.id} className={`has-sub ${openSections[subItem.id] ? 'open' : ''}`}>
+                <a 
+                  href="#!" 
+                  className="side-menu-link"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    toggleSection(subItem.id);
+                  }}
+                >
+                  <span className="side-menu-icon">
+                    <span className="material-symbols-outlined">{subItem.icon}</span>
+                  </span>
+                  <span className="side-menu-text">{subItem.title}</span>
+                  <span className="menu-arrow">
+                    <span className="material-symbols-outlined">
+                      {openSections[subItem.id] ? 'expand_more' : 'chevron_right'}
+                    </span>
+                  </span>
+                </a>
+                {subItem.children && (
+                  <ul className="side-menu-sub">
+                    {subItem.children.map(subSubItem => (
+                      <li key={subSubItem.path}>
+                        <Link 
+                          to={subSubItem.path} 
+                          className={`side-menu-link ${isActive(subSubItem.path) ? 'active' : ''}`}
+                        >
+                          <span className="side-menu-icon">
+                            <span className="material-symbols-outlined">{subSubItem.icon}</span>
+                          </span>
+                          <span className="side-menu-text">{subSubItem.title}</span>
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </li>
+            ))}
+          </ul>
+        </li>
+      );
+    } else {
+      return (
+        <li key={item.id}>
+          <Link 
+            to={item.path} 
+            className={`side-menu-link ${isActive(item.path) ? 'active' : ''}`}
+          >
+            <span className="side-menu-icon">
+              <span className="material-symbols-outlined">{item.icon}</span>
+            </span>
+            <span className="side-menu-text">{item.title}</span>
+            {item.badge && (
+              <span className="badge bg-soft-primary text-primary ms-auto">{item.badge}</span>
+            )}
+          </Link>
+        </li>
+      );
+    }
+  };
 
   return (
-    <div className="lnb">
-      <div className="lnb-header">
-        <h3>
-          <span className="material-symbols-outlined" style={{ marginRight: '8px' }}>{currentNav.icon}</span>
-          {currentNav.title}
-        </h3>
+    <>
+      <div className="header-logo">
+          <Link to="/dashboard" className="logo-link">
+            <span className="logo-icon material-symbols-outlined">business</span>
+            <span className="logo-text">종합 자원 관리 시스템</span>            
+          </Link>
       </div>
-      
-      <nav className="lnb-nav">
-        {currentNav.sections.map((section) => (
-          <div key={section.path} className="lnb-section">
-            <div
-              className={`lnb-section-title ${openSections[section.path] ? 'open' : ''}`}
-              onClick={() => toggleSection(section.path)}
-            >
-              <span>
-                <span className="material-symbols-outlined" style={{ marginRight: '8px' }}>{section.icon}</span>
-                {section.title}
-              </span>
-              <span className="arrow material-symbols-outlined">{openSections[section.path] ? 'expand_more' : 'chevron_right'}</span>
-            </div>
-            
-            {openSections[section.path] && (
-              <ul className="lnb-items">
-                {section.items.map((item) => (
-                  <li key={item.path}>
-                    <Link
-                      to={item.path}
-                      className={`lnb-item ${location.pathname === item.path ? 'active' : ''}`}
-                    >
-                      <span className="material-symbols-outlined" style={{ marginRight: '8px' }}>{item.icon}</span>
-                      {item.title}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            )}
+      <div className="left-side-menu">
+        {/* 사이드바 헤더 */}
+        <div className="h-100" data-simplebar>
+          <div id="sidebar-menu">
+            <ul className="metismenu list-unstyled" id="side-menu">
+              {navigationStructure.map(renderMenuItem)}
+            </ul>
           </div>
-        ))}
-      </nav>
-    </div>
+        </div>
+
+        {/* 사이드바 토글 버튼 */}
+        <div className="sidebar-footer">
+          <button 
+            className="btn btn-sm btn-light w-100"
+            onClick={toggleSidebar}
+            title={collapsed ? '사이드바 펼치기' : '사이드바 접기'}
+          >
+            <span className="material-symbols-outlined">
+              {collapsed ? 'chevron_right' : 'chevron_left'}
+            </span>            
+          </button>
+        </div>
+      </div>
+    </>
   );
 };
 

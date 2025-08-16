@@ -118,148 +118,150 @@ const UserList = () => {
   return (
     <div className="user-list">
       <div className="page-header">
-        <h1>회원 목록</h1>
+        <h1>회원</h1>
         <nav className="breadcrumb">
-          <span>운영 관리</span> &gt; <span>사용자 관리</span> &gt; <span className="current">회원 목록</span>
+          <span>운영 관리</span> <span class="material-symbols-outlined">chevron_right</span> <span>사용자</span> <span class="material-symbols-outlined">chevron_right</span> <span className="current">회원</span>
         </nav>
       </div>
       <div className="page-content">
-        {isLoading && (
-          <div className="loading">불러오는 중...</div>
-        )}
-        {error && (
-          <div className="loading" style={{ color: '#c00' }}>{error}</div>
-        )}
+        <div className="page-content-wrapper">
+          {isLoading && (
+            <div className="loading">불러오는 중...</div>
+          )}
+          {error && (
+            <div className="loading" style={{ color: '#c00' }}>{error}</div>
+          )}
 
-        <div className="list-controls">
-          <div className="search-filters">
-            <input
-              type="text"
-              placeholder="회원 ID, 이름, 이메일로 검색"
-              value={searchTerm}
-              onChange={handleSearch}
-              className="search-input"
-            />
-            <select
-              value={statusFilter}
-              onChange={handleStatusFilter}
-              className="filter-select"
-            >
-              <option value="">전체 상태</option>
-              <option value="활성">활성</option>
-              <option value="비활성">비활성</option>
-              <option value="탈퇴">탈퇴</option>
-            </select>
+          <div className="list-controls">
+            <div className="search-filters">
+              <input
+                type="text"
+                placeholder="회원 ID, 이름, 이메일로 검색"
+                value={searchTerm}
+                onChange={handleSearch}
+                className="search-input"
+              />
+              <select
+                value={statusFilter}
+                onChange={handleStatusFilter}
+                className="filter-select"
+              >
+                <option value="">전체 상태</option>
+                <option value="활성">활성</option>
+                <option value="비활성">비활성</option>
+                <option value="탈퇴">탈퇴</option>
+              </select>
+              <button 
+                className="btn btn-secondary"
+                onClick={() => {
+                  setSearchTerm('');
+                  setStatusFilter('');
+                }}
+              >
+                초기화
+              </button>
+            </div>
+            
             <button 
-              className="btn btn-secondary"
-              onClick={() => {
-                setSearchTerm('');
-                setStatusFilter('');
-              }}
+              className="btn btn-primary"
+              onClick={() => setShowCreateModal(true)}
             >
-              초기화
+              + 새 회원 등록
             </button>
           </div>
-          
-          <button 
-            className="btn btn-primary"
-            onClick={() => setShowCreateModal(true)}
-          >
-            + 새 회원 등록
-          </button>
-        </div>
 
-        <div className="table-container">
-          <table className="table">
-            <thead>
-              <tr>
-                <th onClick={() => handleSort('id')} className="sortable">
-                  회원 ID {sortField === 'id' && (sortDirection === 'asc' ? '↑' : '↓')}
-                </th>
-                <th onClick={() => handleSort('name')} className="sortable">
-                  이름 {sortField === 'name' && (sortDirection === 'asc' ? '↑' : '↓')}
-                </th>
-                <th onClick={() => handleSort('email')} className="sortable">
-                  이메일 {sortField === 'email' && (sortDirection === 'asc' ? '↑' : '↓')}
-                </th>
-                <th>연락처</th>
-                <th onClick={() => handleSort('joinDate')} className="sortable">
-                  가입일 {sortField === 'joinDate' && (sortDirection === 'asc' ? '↑' : '↓')}
-                </th>
-                <th>최종 로그인</th>
-                <th onClick={() => handleSort('status')} className="sortable">
-                  상태 {sortField === 'status' && (sortDirection === 'asc' ? '↑' : '↓')}
-                </th>
-                <th>관리</th>
-              </tr>
-            </thead>
-            <tbody>
-              {paginatedUsers.map((user) => (
-                <tr key={user.id} onClick={() => console.log('Navigate to user detail')}>
-                  <td>{user.id}</td>
-                  <td>
-                    <Link to={`/operation/users/list/${user.id}`} className="user-link">
-                      {user.name}
-                    </Link>
-                  </td>
-                  <td>{user.email}</td>
-                  <td>{user.phone}</td>
-                  <td>{user.joinDate}</td>
-                  <td>{user.lastLogin}</td>
-                  <td>
-                    <span className={`status-badge ${user.status === '활성' ? 'active' : 'inactive'}`}>
-                      {user.status}
-                    </span>
-                  </td>
-                  <td>
-                    <div className="action-buttons">
-                      <button
-                        className="btn btn-secondary btn-sm"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          setSelectedUser(user);
-                          setShowEditModal(true);
-                        }}
-                      >
-                        수정
-                      </button>
-                      <button
-                        className="btn btn-danger btn-sm"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          setSelectedUser(user);
-                          setShowDeleteModal(true);
-                        }}
-                      >
-                        삭제
-                      </button>
-                    </div>
-                  </td>
+          <div className="table-container">
+            <table className="table">
+              <thead>
+                <tr>
+                  <th onClick={() => handleSort('id')} className="sortable">
+                    회원 ID {sortField === 'id' && (sortDirection === 'asc' ? '↑' : '↓')}
+                  </th>
+                  <th onClick={() => handleSort('name')} className="sortable">
+                    이름 {sortField === 'name' && (sortDirection === 'asc' ? '↑' : '↓')}
+                  </th>
+                  <th onClick={() => handleSort('email')} className="sortable">
+                    이메일 {sortField === 'email' && (sortDirection === 'asc' ? '↑' : '↓')}
+                  </th>
+                  <th>연락처</th>
+                  <th onClick={() => handleSort('joinDate')} className="sortable">
+                    가입일 {sortField === 'joinDate' && (sortDirection === 'asc' ? '↑' : '↓')}
+                  </th>
+                  <th>최종 로그인</th>
+                  <th onClick={() => handleSort('status')} className="sortable">
+                    상태 {sortField === 'status' && (sortDirection === 'asc' ? '↑' : '↓')}
+                  </th>
+                  <th>관리</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+              </thead>
+              <tbody>
+                {paginatedUsers.map((user) => (
+                  <tr key={user.id} onClick={() => console.log('Navigate to user detail')}>
+                    <td>{user.id}</td>
+                    <td>
+                      <Link to={`/operation/users/list/${user.id}`} className="user-link">
+                        {user.name}
+                      </Link>
+                    </td>
+                    <td>{user.email}</td>
+                    <td>{user.phone}</td>
+                    <td>{user.joinDate}</td>
+                    <td>{user.lastLogin}</td>
+                    <td>
+                      <span className={`status-badge ${user.status === '활성' ? 'active' : 'inactive'}`}>
+                        {user.status}
+                      </span>
+                    </td>
+                    <td>
+                      <div className="action-buttons">
+                        <button
+                          className="btn btn-secondary btn-sm"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setSelectedUser(user);
+                            setShowEditModal(true);
+                          }}
+                        >
+                          수정
+                        </button>
+                        <button
+                          className="btn btn-danger btn-sm"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setSelectedUser(user);
+                            setShowDeleteModal(true);
+                          }}
+                        >
+                          삭제
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
 
-        <div className="pagination">
-          <button
-            className="btn btn-secondary"
-            disabled={currentPage === 1}
-            onClick={() => setCurrentPage(currentPage - 1)}
-          >
-            이전
-          </button>
-          <span className="page-info">
-            {currentPage} / {totalPages} 페이지 (총 {filteredAndSortedUsers.length}건)
-          </span>
-          <button
-            className="btn btn-secondary"
-            disabled={currentPage === totalPages}
-            onClick={() => setCurrentPage(currentPage + 1)}
-          >
-            다음
-          </button>
-        </div>  
+          <div className="pagination">
+            <button
+              className="btn btn-secondary"
+              disabled={currentPage === 1}
+              onClick={() => setCurrentPage(currentPage - 1)}
+            >
+              이전
+            </button>
+            <span className="page-info">
+              {currentPage} / {totalPages} 페이지 (총 {filteredAndSortedUsers.length}건)
+            </span>
+            <button
+              className="btn btn-secondary"
+              disabled={currentPage === totalPages}
+              onClick={() => setCurrentPage(currentPage + 1)}
+            >
+              다음
+            </button>
+          </div>  
+        </div>        
       </div>
       
 

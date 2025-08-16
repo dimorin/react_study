@@ -88,134 +88,136 @@ const UserDetail = () => {
   return (
     <div className="user-detail">
       <div className="page-header">
-        <h1>회원 상세 정보 - {user.name}</h1>
+        <h1>{user.name}</h1>
         <nav className="breadcrumb">
-          <span>운영 관리</span> &gt; <span>사용자 관리</span> &gt; 
-          <span>회원 목록</span> &gt; <span className="current">{user.name}</span>
+          <span>운영 관리</span> <span class="material-symbols-outlined">chevron_right</span> <span>사용자</span> <span class="material-symbols-outlined">chevron_right</span> 
+          <span>회원</span> <span class="material-symbols-outlined">chevron_right</span> <span className="current">{user.name}</span>
         </nav>
       </div>
       <div className="page-content">
-        <div className="detail-actions">
-          <button 
-            className="btn btn-secondary"
-            onClick={handleBackToList}
-          >
-            목록으로
-          </button>
-          <div className="action-group">
+        <div className="page-content-wrapper">
+          <div className="detail-actions">
             <button 
-              className="btn btn-primary"
-              onClick={() => setShowEditModal(true)}
+              className="btn btn-secondary"
+              onClick={handleBackToList}
             >
-              회원 정보 수정
+              목록으로
             </button>
-            <button 
-              className="btn btn-danger"
-              onClick={() => setShowDeleteModal(true)}
-            >
-              회원 삭제
-            </button>
-          </div>
-        </div>
-
-        <div className="detail-content">
-          <div className="detail-section">
-            <h2>기본 정보</h2>
-            <div className="info-grid">
-              <div className="info-item">
-                <label>회원 ID</label>
-                <span>{user.id}</span>
-              </div>
-              <div className="info-item">
-                <label>이름</label>
-                <span>{user.name}</span>
-              </div>
-              <div className="info-item">
-                <label>이메일</label>
-                <span>{user.email}</span>
-              </div>
-              <div className="info-item">
-                <label>연락처</label>
-                <span>{user.phone}</span>
-              </div>
-              <div className="info-item">
-                <label>성별</label>
-                <span>{user.gender}</span>
-              </div>
-              <div className="info-item">
-                <label>생년월일</label>
-                <span>{user.birthDate}</span>
-              </div>
+            <div className="action-group">
+              <button 
+                className="btn btn-primary"
+                onClick={() => setShowEditModal(true)}
+              >
+                회원 정보 수정
+              </button>
+              <button 
+                className="btn btn-danger"
+                onClick={() => setShowDeleteModal(true)}
+              >
+                회원 삭제
+              </button>
             </div>
           </div>
 
-          <div className="detail-section">
-            <h2>가입 정보</h2>
-            <div className="info-grid">
-              <div className="info-item">
-                <label>가입일</label>
-                <span>{user.joinDate}</span>
-              </div>
-              <div className="info-item">
-                <label>가입 경로</label>
-                <span>{user.joinSource}</span>
-              </div>
-              <div className="info-item">
-                <label>최종 로그인 일시</label>
-                <span>{user.lastLogin}</span>
-              </div>
-              <div className="info-item">
-                <label>로그인 횟수</label>
-                <span>{user.loginCount}회</span>
-              </div>
-              <div className="info-item">
-                <label>상태</label>
-                <span className={`status-badge ${user.status === '활성' ? 'active' : 'inactive'}`}>
-                  {user.status}
-                </span>
+          <div className="detail-content">
+            <div className="detail-section">
+              <h2>기본 정보</h2>
+              <div className="info-grid">
+                <div className="info-item">
+                  <label>회원 ID</label>
+                  <span>{user.id}</span>
+                </div>
+                <div className="info-item">
+                  <label>이름</label>
+                  <span>{user.name}</span>
+                </div>
+                <div className="info-item">
+                  <label>이메일</label>
+                  <span>{user.email}</span>
+                </div>
+                <div className="info-item">
+                  <label>연락처</label>
+                  <span>{user.phone}</span>
+                </div>
+                <div className="info-item">
+                  <label>성별</label>
+                  <span>{user.gender}</span>
+                </div>
+                <div className="info-item">
+                  <label>생년월일</label>
+                  <span>{user.birthDate}</span>
+                </div>
               </div>
             </div>
-          </div>
 
-          <div className="detail-section">
-            <h2>주소 정보</h2>
-            <div className="info-grid">
-              <div className="info-item">
-                <label>우편번호</label>
-                <span>{user.zipCode}</span>
-              </div>
-              <div className="info-item full-width">
-                <label>기본 주소</label>
-                <span>{user.address}</span>
-              </div>
-              <div className="info-item full-width">
-                <label>상세 주소</label>
-                <span>{user.detailAddress}</span>
+            <div className="detail-section">
+              <h2>가입 정보</h2>
+              <div className="info-grid">
+                <div className="info-item">
+                  <label>가입일</label>
+                  <span>{user.joinDate}</span>
+                </div>
+                <div className="info-item">
+                  <label>가입 경로</label>
+                  <span>{user.joinSource}</span>
+                </div>
+                <div className="info-item">
+                  <label>최종 로그인 일시</label>
+                  <span>{user.lastLogin}</span>
+                </div>
+                <div className="info-item">
+                  <label>로그인 횟수</label>
+                  <span>{user.loginCount}회</span>
+                </div>
+                <div className="info-item">
+                  <label>상태</label>
+                  <span className={`status-badge ${user.status === '활성' ? 'active' : 'inactive'}`}>
+                    {user.status}
+                  </span>
+                </div>
               </div>
             </div>
-          </div>
 
-          <div className="detail-section">
-            <h2>추가 정보</h2>
-            <div className="additional-info">
-              <div className="info-card">
-                <h3>구매 내역</h3>
-                <p>최근 30일간 구매 건수: <strong>3건</strong></p>
-                <p>총 구매 금액: <strong>₩156,000</strong></p>
+            <div className="detail-section">
+              <h2>주소 정보</h2>
+              <div className="info-grid">
+                <div className="info-item">
+                  <label>우편번호</label>
+                  <span>{user.zipCode}</span>
+                </div>
+                <div className="info-item full-width">
+                  <label>기본 주소</label>
+                  <span>{user.address}</span>
+                </div>
+                <div className="info-item full-width">
+                  <label>상세 주소</label>
+                  <span>{user.detailAddress}</span>
+                </div>
               </div>
-              <div className="info-card">
-                <h3>게시글 작성</h3>
-                <p>총 게시글 수: <strong>12개</strong></p>
-                <p>최근 게시글: <strong>2024-12-18</strong></p>
-              </div>
-              <div className="info-card">
-                <h3>댓글 활동</h3>
-                <p>총 댓글 수: <strong>45개</strong></p>
-                <p>최근 댓글: <strong>2024-12-19</strong></p>
+            </div>
+
+            <div className="detail-section">
+              <h2>추가 정보</h2>
+              <div className="additional-info">
+                <div className="info-card">
+                  <h3>구매 내역</h3>
+                  <p>최근 30일간 구매 건수: <strong>3건</strong></p>
+                  <p>총 구매 금액: <strong>₩156,000</strong></p>
+                </div>
+                <div className="info-card">
+                  <h3>게시글 작성</h3>
+                  <p>총 게시글 수: <strong>12개</strong></p>
+                  <p>최근 게시글: <strong>2024-12-18</strong></p>
+                </div>
+                <div className="info-card">
+                  <h3>댓글 활동</h3>
+                  <p>총 댓글 수: <strong>45개</strong></p>
+                  <p>최근 댓글: <strong>2024-12-19</strong></p>
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        </div>        
       </div>
       
 

@@ -55,26 +55,7 @@ const Dashboard = () => {
                 </div>
               ))}
             </div>
-          </div>
-
-          <div className="content-section">
-            <div className="section-title">
-              <h2>최근 7일간 일간 활성 사용자(DAU) 추이</h2>
-            </div>
-            <div className="chart-placeholder">
-              <div className="chart-content">              
-                <div className="chart-mock">
-                  <div className="chart-bar" style={{height: '60%'}}></div>
-                  <div className="chart-bar" style={{height: '75%'}}></div>
-                  <div className="chart-bar" style={{height: '45%'}}></div>
-                  <div className="chart-bar" style={{height: '80%'}}></div>
-                  <div className="chart-bar" style={{height: '90%'}}></div>
-                  <div className="chart-bar" style={{height: '70%'}}></div>
-                  <div className="chart-bar" style={{height: '85%'}}></div>
-                </div>
-              </div>
-            </div>
-          </div>
+          </div>         
 
           <div className="content-section">
             <div className="section-title">

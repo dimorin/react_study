@@ -90,8 +90,13 @@ const UserDetail = () => {
       <div className="page-header">
         <h1>{user.name}</h1>
         <nav className="breadcrumb">
-          <span>운영 관리</span> <span class="material-symbols-outlined">chevron_right</span> <span>사용자</span> <span class="material-symbols-outlined">chevron_right</span> 
-          <span>회원</span> <span class="material-symbols-outlined">chevron_right</span> <span className="current">{user.name}</span>
+          <span>운영 관리</span> 
+          <span class="material-symbols-outlined arrow">chevron_right</span> 
+          <span>사용자</span> 
+          <span class="material-symbols-outlined arrow">chevron_right</span> 
+          <span>회원</span> 
+          <span class="material-symbols-outlined arrow">chevron_right</span> 
+          <span className="current">{user.name}</span>
         </nav>
       </div>
       <div className="page-content">

@@ -21,12 +21,13 @@
   padding: 8px 12px;
   border: 1px solid #ddd;
   border-radius: 4px;
-  font-size: 14px;
+  font-size:var(--font-size-14);
+  color:var(--font-gray-700);
 }
 
 .search-input:focus {
   outline: none;
-  border-color: #007bff;
+  border-color: var(--color-blue);
   box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
 }
 
@@ -34,7 +35,8 @@
   padding: 8px 12px;
   border: 1px solid #ddd;
   border-radius: 4px;
-  font-size: 14px;
+  font-size:var(--font-size-14);
+  color:var(--font-gray-700);
   background-color: white;
 }
 
@@ -55,7 +57,8 @@
   text-align: left;
   font-weight: 400;
   border-bottom: 1px solid #dee2e6;
-  font-size:14px;
+  font-size:var(--font-size-14);
+  color:var(--font-gray-700);
 }
 
 .table th.sortable {
@@ -71,7 +74,8 @@
 .table td {
   padding: 12px;
   border-bottom: 1px solid #dee2e6;
-  font-size:14px;
+  font-size:var(--font-size-14);
+  color:var(--font-gray-700);
 }
 
 .table tbody tr {
@@ -95,7 +99,7 @@
 .status-badge {
   padding: 4px 8px;
   border-radius: 12px;
-  font-size: 12px;
+  font-size:var(--font-size-12);
   font-weight: 500;
 }
 
@@ -116,7 +120,7 @@
 
 .btn-sm {
   padding: 4px 8px;
-  font-size: 12px;
+  font-size:var(--font-size-12);
 }
 
 .pagination {
@@ -129,8 +133,8 @@
 }
 
 .page-info {
-  font-size: 14px;
-  color: #666;
+  font-size:var(--font-size-14);
+  color:var(--font-gray-700);
 }
 
 .pagination .btn:disabled {
@@ -166,6 +170,6 @@
 .loading {
   text-align: center;
   padding: 12px 0 20px;
-  font-size: 14px;
+  font-size:var(--font-size-14);
   color: #666;
 }

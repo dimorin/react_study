@@ -7,7 +7,7 @@
 }
 
 .logo-link {
-  font-size: 18px;
+  font-size:var(--font-size-16);
   font-weight: 500;
   color: var(--color-primary);
   text-decoration: none;
@@ -21,7 +21,7 @@
 }
 
 .logo-icon {
-  font-size: 24px;
+  font-size:var(--font-size-24);
   font-variation-settings: 'FILL' 1;
 }
 /* Left Side Menu Styles */
@@ -89,9 +89,9 @@
 }
 
 .side-menu-link.active {
-  color: #007bff;
+  color: var(--color-blue);
   background: #f8f9ff;
-  border-left-color: #007bff;
+  border-left-color: var(--color-blue);
   font-weight: 500;
 }
 
@@ -107,14 +107,14 @@
 }
 
 .side-menu-icon .material-symbols-outlined {
-  font-size: 18px;
+  font-size:var(--font-size-16);
   font-variation-settings: 'FILL' 0;
 }
 
 /* Side Menu Text */
 .side-menu-text {
   flex: 1;
-  font-size: 14px;
+  font-size:var(--font-size-14);
   font-weight: 400;
   white-space: nowrap;
   overflow: hidden;
@@ -134,7 +134,7 @@
 }
 
 .menu-arrow .material-symbols-outlined {
-  font-size: 16px;
+  font-size:var(--font-size-16);
   font-variation-settings: 'FILL' 0;
 }
 
@@ -159,18 +159,18 @@
 
 .side-menu-sub .side-menu-link {
   padding: 10px 20px 10px 52px;
-  font-size: 13px;
+  font-size:var(--font-size-12);
   border-left: none;
 }
 
 .side-menu-sub .side-menu-sub .side-menu-link {
   padding-left: 72px;
-  font-size: 12px;
+  font-size:var(--font-size-12);
 }
 
 /* Badge */
 .badge {
-  font-size: 10px;
+  font-size:var(--font-size-12);
   padding: 4px 8px;
   border-radius: 12px;
   font-weight: 500;
@@ -181,7 +181,7 @@
 }
 
 .text-primary {
-  color: #007bff !important;
+  color: var(--color-blue) !important;
 }
 
 /* Sidebar Footer */
@@ -263,7 +263,7 @@
 /* Active State Enhancements */
 .side-menu-link.active .side-menu-icon .material-symbols-outlined {
   font-variation-settings: 'FILL' 1;
-  color: #007bff;
+  color: var(--color-blue);
 }
 
 /* Responsive Design */
@@ -315,7 +315,7 @@
 
 /* Focus States for Accessibility */
 .side-menu-link:focus {
-  outline: 2px solid #007bff;
+  outline: 2px solid var(--color-blue);
   outline-offset: -2px;
 }
 

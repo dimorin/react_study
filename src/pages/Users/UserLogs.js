@@ -81,7 +81,11 @@ const UserLogs = () => {
       <div className="page-header">
         <h1>로그</h1>
         <nav className="breadcrumb">
-          <span>운영 관리</span> <span class="material-symbols-outlined">chevron_right</span> <span>사용자</span> <span class="material-symbols-outlined">chevron_right</span> <span className="current">로그</span>
+          <span>운영 관리</span> 
+          <span class="material-symbols-outlined arrow">chevron_right</span> 
+          <span>사용자</span> 
+          <span class="material-symbols-outlined arrow">chevron_right</span> 
+          <span className="current">로그</span>
         </nav>
       </div>
       <div className="page-content">
